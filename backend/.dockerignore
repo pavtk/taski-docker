@@ -1,0 +1,5 @@
+# backand/.dockerignore
+venv
+.gitignore
+.env
+
