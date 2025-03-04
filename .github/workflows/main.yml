@@ -75,7 +75,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/taski_backend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/taski_backend:latest
   frontend_tests:
     runs-on: ubuntu-latest
 
@@ -111,14 +111,14 @@ jobs:
       - name: Login to Docker 
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
           context: ./frontend/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/taski_frontend:latest         
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/taski_frontend:latest         
 
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
@@ -131,7 +131,7 @@ jobs:
       - name: Login to Docker 
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
@@ -139,5 +139,5 @@ jobs:
           context: ./gateway/
           push: true
           # Тут вместо username должен быть ваш логин на Docker Hub
-          tags: ${{ secrets.DOCKER_USERNAME }}/taski_gateway:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/taski_gateway:latest
 
